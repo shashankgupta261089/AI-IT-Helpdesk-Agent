@@ -24,9 +24,9 @@ def get_supabase_client() -> Client:
     )
     if not supabase_url or not supabase_key:
         raise RuntimeError(
-            "Supabase tickets are not configured. Add SUPABASE_URL and "
-            "SUPABASE_SERVICE_ROLE_KEY to App/.env, then run setup_supabase.sql "
-            "in the Supabase SQL editor."
+            "Supabase is not configured. Add SUPABASE_URL and "
+            "SUPABASE_SERVICE_ROLE_KEY in Streamlit Cloud Secrets for deployment "
+            "or App/.env for local runs."
         )
     return create_client(supabase_url, supabase_key)
 
@@ -38,8 +38,11 @@ def initialize_database() -> None:
         get_supabase_client().from_(TICKETS_TABLE_NAME).select("id").limit(1).execute()
     except Exception as exc:
         raise RuntimeError(
-            f"Supabase ticket table '{TICKETS_TABLE_NAME}' is not available. "
-            "Run setup_supabase.sql in the Supabase SQL editor first."
+            f"Cannot access Supabase ticket table '{TICKETS_TABLE_NAME}'. "
+            "Check that Streamlit Cloud Secrets point to the same Supabase "
+            "project where setup_supabase.sql was run, and confirm "
+            "SUPABASE_SERVICE_ROLE_KEY and SUPABASE_TICKETS_TABLE_NAME are correct. "
+            f"Original error: {exc}"
         ) from exc
 
 

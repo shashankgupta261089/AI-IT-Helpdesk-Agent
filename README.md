@@ -70,6 +70,8 @@ The app launches the local stdio MCP server automatically through `sys.executabl
 
 Ticket lookup is protected in the app MCP server. Ticket details are returned only when the employee name and Employee ID match the ticket owner.
 
+If the deployed app says `support_tickets` is not available, MCP is running but Supabase table access is failing. Check Streamlit Cloud Secrets for `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`, and `SUPABASE_TICKETS_TABLE_NAME`, then confirm `setup_supabase.sql` was run in that same Supabase project.
+
 ## MCP Testing
 
 From the project root:
