@@ -49,7 +49,7 @@ SEED_SUPABASE_ON_STARTUP=true
 LANGSMITH_TRACING=true
 LANGSMITH_ENDPOINT=https://api.smith.langchain.com
 LANGSMITH_API_KEY=your-langsmith-key-here
-LANGSMITH_PROJECT=AI-IT-Helpdesk-Agent
+LANGSMITH_PROJECT="AI Help Desk Agent"
 ```
 
 ## Run
