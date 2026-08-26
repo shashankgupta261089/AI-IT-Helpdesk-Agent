@@ -1,0 +1,12 @@
+streamlit
+langchain
+langchain-community
+langchain-openai
+langchain-mcp-adapters
+fastmcp
+langchain-text-splitters
+pydantic
+python-dotenv
+langsmith
+supabase
+numpy
