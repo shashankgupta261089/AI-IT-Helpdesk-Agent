@@ -26,6 +26,14 @@ HelpdeskAppUtils.apply_streamlit_secrets_to_environment()
 HelpdeskAppUtils.apply_app_styles()
 HelpdeskAppUtils.initialize_session_state()
 
+missing_config_keys = HelpdeskAppUtils.missing_required_config_keys()
+if missing_config_keys:
+    st.error(
+        "Missing deployment configuration: "
+        + ", ".join(missing_config_keys)
+        + ". Add these in Streamlit Cloud Secrets and reboot the app."
+    )
+
 
 @st.dialog("Create support ticket")
 def show_ticket_creation_dialog() -> None:

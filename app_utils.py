@@ -45,7 +45,13 @@ class HelpdeskAppUtils:
                 value = st.secrets.get(key)
             except FileNotFoundError:
                 value = None
-            if value and not os.environ.get(key):
+            current_value = os.environ.get(key, "")
+            current_is_placeholder = (
+                "your-" in current_value.lower()
+                or "<" in current_value
+                or ">" in current_value
+            )
+            if value and (not current_value or current_is_placeholder):
                 os.environ[key] = str(value)
 
     @staticmethod
@@ -54,6 +60,23 @@ class HelpdeskAppUtils:
 
         for key, default in HelpdeskAppUtils.SESSION_DEFAULTS.items():
             st.session_state.setdefault(key, default)
+
+    @staticmethod
+    def missing_required_config_keys() -> list[str]:
+        """Return required deployment keys that are not available to the app."""
+
+        required_keys = [
+            "OPENAI_API_KEY",
+            "SUPABASE_URL",
+            "SUPABASE_SERVICE_ROLE_KEY",
+            "SUPABASE_TICKETS_TABLE_NAME",
+        ]
+        missing = []
+        for key in required_keys:
+            value = os.environ.get(key, "").strip()
+            if not value or "your-" in value.lower() or "<" in value or ">" in value:
+                missing.append(key)
+        return missing
 
     @staticmethod
     def reset_home() -> None:
