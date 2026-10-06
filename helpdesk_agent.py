@@ -81,7 +81,7 @@ def create_helpdesk_agent(
     employee_number: str = "EMP-0001",
     allow_write_actions: bool = False,
 ):
-    """Create the Session 22 agent with local tools plus approved MCP tools."""
+    """Create the Session 21 agent with local tools plus approved MCP tools."""
 
     # The agent receives a sync wrapper tool. The wrapper calls MCP internally.
     ticket_lookup_tool = build_ticket_lookup_tool(employee_name, employee_number)
@@ -123,7 +123,7 @@ def handle_support_request(
     employee_number: str = "EMP-0001",
     allow_write_actions: bool = False,
 ) -> dict[str, Any]:
-    """Run the full Session 22 flow."""
+    """Run the full Session 21 flow."""
 
     # First classify the request, then let the agent choose the right tools.
     triage = triage_request(user_query)

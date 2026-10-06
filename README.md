@@ -2,9 +2,9 @@
 
 End-to-End Agentic AI Capstone with LangChain, RAG, Pydantic, MCP and Streamlit
 
-## Session 22 App
+## Session 21 App
 
-This is the full runnable app for Session 22. It includes everything from Session 21, then adds:
+This is the full runnable app for Session 21. It includes everything from Session 20, then adds:
 
 - FastMCP support-ticket tools over stdio
 - LangChain MCP adapter integration
